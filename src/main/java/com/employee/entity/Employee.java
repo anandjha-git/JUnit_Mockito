@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Empolyee {
+public class Employee {
 	private Integer empId;
 	private String name;
 	private String address;
