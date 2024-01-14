@@ -3,11 +3,15 @@ package com.employee.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.employee.entity.Employee;
 import com.employee.repository.EmployeeRepository;
+
+import net.bytebuddy.implementation.bytecode.Throw;
 
 @Service
 public class EmployeeServiceImp implements EmployeeService {
@@ -22,8 +26,13 @@ public class EmployeeServiceImp implements EmployeeService {
 	}
 
 	@Override
-	public Optional<Employee> getEmployeeByEmpId(Integer empId) {
-		return repository.findById(empId);
+	public Employee getEmployeeByEmpId(Integer empId) {
+		try {
+			return repository.getReferenceById(empId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new EntityNotFoundException();
+		}
 	}
 
 	@Override
@@ -41,11 +50,14 @@ public class EmployeeServiceImp implements EmployeeService {
 	}
 
 	@Override
-	public void deleteEmployee(Integer empId) {
+	public Boolean deleteEmployee(Integer empId) {
 		if (repository.findById(empId) != null) {
 			repository.deleteById(empId);
+			return true;
+		}else {
+			System.out.println("Employee Not Found");
 		}
-
+		return false;
 	}
 
 	@Override

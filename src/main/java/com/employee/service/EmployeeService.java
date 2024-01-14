@@ -12,11 +12,11 @@ public interface EmployeeService {
 
 	Employee addEmployee(Employee employee);
 
-	Optional<Employee> getEmployeeByEmpId(Integer empId);
+	Employee getEmployeeByEmpId(Integer empId);
 
 	Employee getEmployeeByName(String name);
 
-	void deleteEmployee(Integer empId);
+	Boolean deleteEmployee(Integer empId);
 
 	List<Employee> getAllEmployee();
 
