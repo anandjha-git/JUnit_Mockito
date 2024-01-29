@@ -29,12 +29,12 @@ public class EmployeeController {
 		return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/getEmployee/{Id}")
-	ResponseEntity<Employee> getEmployeeByEmpId(@PathVariable("Id") Integer empId) {
+	@GetMapping("/getEmployee/{empId}")
+	ResponseEntity<Employee> getEmployeeByEmpId(@PathVariable("empId") Integer empId) {
 		return new ResponseEntity<Employee>(employeeService.getEmployeeByEmpId(empId), HttpStatus.FOUND);
 	}
 
-	@GetMapping("/getEmployee/{Name}")
+	@GetMapping("/getEmployeeByName/{Name}")
 	ResponseEntity<Employee> getEmployeeByEmployeeName(@PathVariable("Name") String employeeName) {
 		return new ResponseEntity<Employee>(employeeService.getEmployeeByName(employeeName), HttpStatus.FOUND);
 	}
@@ -49,7 +49,7 @@ public class EmployeeController {
 		return new ResponseEntity<List<Employee>>(employeeService.getAllEmployee(), HttpStatus.FOUND);
 	}
 
-	@GetMapping("/getEmployeesByName/{Name}")
+	@GetMapping("/getEmployees/{Name}")
 	ResponseEntity<List<Employee>> getAllEmployeeByName(@PathVariable("Name") String employeeName) {
 		return new ResponseEntity<List<Employee>>(employeeService.getAllEmployeeByName(employeeName), HttpStatus.FOUND);
 	}
